@@ -32,38 +32,12 @@ window = {
 		on_start = "[GetVariableSystem.Clear( 'appearance_customization_side_tab_open' )]"
 		on_start = "[GetVariableSystem.Clear( 'appearance_customization_portrait_view' )]"
 		on_start = "[GetVariableSystem.Clear( 'coat_of_arms_customization_open' )]"
-		on_start = "[GetVariableSystem.Set( 'krdn_refresh_done', 'true' )]"
 		using = CoatOfArmsDesignerAnimationResetState
 	}
 
 	state = {
 		name = _hide
 		using = Animation_FadeOut_Standard
-	}
-
-	state = {
-		name = show_naked_initialize
-		trigger_on_create = no
-		trigger_when = "[GetScriptedGui('krdn_ruler_designer_get_show_naked').IsValid( GuiScope.SetRoot( RulerDesignerWindow.GetCharacterToOverwrite.MakeScope ).AddScope('age_check',MakeScopeBool(Or(And(RulerDesignerWindow.IsFemale,GreaterThanOrEqualTo_int32(RulerDesignerWindow.GetAge,GetDefine( 'NPortrait', 'PORTRAIT_FEMALE_ADULT_AGE' ))),And(Not(RulerDesignerWindow.IsFemale),GreaterThanOrEqualTo_int32(RulerDesignerWindow.GetAge,GetDefine( 'NPortrait', 'PORTRAIT_MALE_ADULT_AGE' )))))).End)]"
-		on_start = "[GetScriptedGui('krdn_ruler_designer_get_show_naked').Execute( GuiScope.SetRoot( RulerDesignerWindow.GetCharacterToOverwrite.MakeScope ).AddScope('age_check',MakeScopeBool(Or(And(RulerDesignerWindow.IsFemale,GreaterThanOrEqualTo_int32(RulerDesignerWindow.GetAge,GetDefine( 'NPortrait', 'PORTRAIT_FEMALE_ADULT_AGE' ))),And(Not(RulerDesignerWindow.IsFemale),GreaterThanOrEqualTo_int32(RulerDesignerWindow.GetAge,GetDefine( 'NPortrait', 'PORTRAIT_MALE_ADULT_AGE' )))))).End)]"
-		on_start = "[VariableSystem.Clear( 'krdn_refresh_done' )]"
-
-	}
-
-	state = {
-		name = show_naked_initialize_2
-		trigger_on_create = no
-		trigger_when = "[Not(VariableSystem.Exists( 'krdn_refresh_done' ))]"
-		on_start = "[RulerDesignerWindow.ToggleShowAccessories]"
-		on_start = "[RulerDesignerWindow.ToggleShowAccessories]"
-		on_start = "[VariableSystem.Set( 'krdn_refresh_done', 'true' )]"
-	}
-
-	state = {
-		name = show_naked_initialize_3
-		trigger_on_create = no
-		trigger_when = "[GetScriptedGui('krdn_ruler_designer_show_nudity_enabled').IsValid(GuiScope.SetRoot( RulerDesignerWindow.GetCharacterToOverwrite.MakeScope ).End)]"
-		on_start = "[GetScriptedGui('krdn_ruler_designer_show_nudity_enabled').Execute(GuiScope.SetRoot( RulerDesignerWindow.GetCharacterToOverwrite.MakeScope ).End)]"
 	}
 
 	vbox = {
@@ -1003,28 +977,6 @@ window = {
 						using = Animation_Refresh_FadeIn
 					}
 				}
-
-
-				button_checkbox_label = {
-					visible = "[GetScriptedGui('krdn_ruler_designer_show_nudity_enabled').IsShown(GuiScope.SetRoot( RulerDesignerWindow.GetCharacterToOverwrite.MakeScope ).End)]"
-					parentanchor = bottom|hcenter
-					layoutpolicy_horizontal = expanding
-					position = { 170 -10 }
-					datacontext = "[GetScriptedGui('krdn_ruler_designer_set_show_naked')]"
-					onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( RulerDesignerWindow.GetCharacterToOverwrite.MakeScope ).End)]"
-					tooltip = RULER_DESIGNER_SHOW_NAKED_desc
-
-					blockoverride "checkbox"
-					{
-						checked = "[ScriptedGui.IsShown( GuiScope.SetRoot( RulerDesignerWindow.GetCharacterToOverwrite.MakeScope ).End)]"
-					}
-
-					blockoverride "text"
-					{
-						text = RULER_DESIGNER_SHOW_NAKED
-					}
-				}
-
 
 				button_standard = {
 					parentanchor = bottom|hcenter
@@ -2078,26 +2030,6 @@ window = {
 
 					state = {
 						using = Animation_Refresh_FadeIn
-					}
-				}
-
-				button_checkbox_label = {
-					visible = "[GetScriptedGui('krdn_ruler_designer_show_nudity_enabled').IsShown(GuiScope.SetRoot( RulerDesignerWindow.GetCharacterToOverwrite.MakeScope ).End)]"
-					parentanchor = bottom|hcenter
-					layoutpolicy_horizontal = expanding
-					position = { 0 10 }
-					datacontext = "[GetScriptedGui('krdn_ruler_designer_set_show_naked')]"
-					onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( RulerDesignerWindow.GetCharacterToOverwrite.MakeScope ).End)]"
-					tooltip = RULER_DESIGNER_SHOW_NAKED_desc
-					
-					blockoverride "checkbox"
-					{
-						checked = "[ScriptedGui.IsShown( GuiScope.SetRoot( RulerDesignerWindow.GetCharacterToOverwrite.MakeScope ).End)]"
-					}
-
-					blockoverride "text"
-					{
-						text = RULER_DESIGNER_SHOW_NAKED
 					}
 				}
 

@@ -5,5 +5,5 @@ tags={
 	"Utilities"
 }
 name="Ruler Designer - Nudity Toggle"
-supported_version="1.9.*"
+supported_version="1.11.*"
 path="mod/krdn"
